@@ -8,7 +8,7 @@ import AccountDto from '@/data-transfer-objects/models/account-dto';
 
 class RegCommandListener extends BaseListener {
   getEventTrigger(): RegExp | TelegramBot.MessageType {
-    return /^\/del (\d+)/g;
+    return /^\/del (\d+)/gi;
   }
 
   protected async handleEvent(

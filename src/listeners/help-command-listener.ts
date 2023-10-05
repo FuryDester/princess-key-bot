@@ -3,7 +3,7 @@ import * as TelegramBot from 'node-telegram-bot-api';
 
 class HelpCommandListener extends BaseListener {
   getEventTrigger(): RegExp | TelegramBot.MessageType {
-    return /^\/help.?/g;
+    return /^\/help.?/gi;
   }
 
   protected async handleEvent(
