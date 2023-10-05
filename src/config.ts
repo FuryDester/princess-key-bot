@@ -2,6 +2,7 @@ import { BotCommand } from 'node-telegram-bot-api';
 
 interface Config {
   commands: BotCommand[],
+  promo_text: RegExp,
 }
 
 export const config: Config = {
@@ -27,4 +28,5 @@ export const config: Config = {
       description : 'Вызов подсказки по командам',
     },
   ],
+  promo_text: /(.+)\n\n.+(?:\n|.+)\nДля ввода с сайта: /g,
 };

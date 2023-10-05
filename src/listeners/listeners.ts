@@ -5,6 +5,7 @@ import DelCommandListener from '@/listeners/del-command-listener';
 import UcShortCommandListener from '@/listeners/uc-short-command-listener';
 import UcCodeCommandListener from '@/listeners/uc-code-command-listener';
 import CodeCommandListener from '@/listeners/code-command-listener';
+import RepostCodeTextListener from '@/listeners/repost-code-text-listener';
 
 export default [
   new HelpCommandListener(),
@@ -13,4 +14,5 @@ export default [
   new UcShortCommandListener(),
   new UcCodeCommandListener(),
   new CodeCommandListener(),
+  new RepostCodeTextListener(),
 ] as BaseListener[];

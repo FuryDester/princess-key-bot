@@ -64,7 +64,7 @@ databaseClient.afterAvailability(async () => {
   });
 
   Logger.info('Adding commands');
-  await client.setMyCommands(appConfig.commands, { language_code: 'RU' });
+  await client.setMyCommands(appConfig.commands);
 
   Logger.info('Bot setup completed!');
 });
