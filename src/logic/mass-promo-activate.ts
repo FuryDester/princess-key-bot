@@ -59,8 +59,9 @@ export const massPromoActivate = async (promoText: string, message: TelegramBot.
 
   const accounts = accountsModel.formDtos(accountsData) as AccountDto[];
 
+  let successCount = 0;
   const startTime = moment().unix();
-  const promises = accounts.map(async (account): Promise<boolean> => {
+  for (const account of accounts) {
     const web = new WebClient(account.id, promoText);
 
     const result = await web.activatePromo();
@@ -70,31 +71,27 @@ export const massPromoActivate = async (promoText: string, message: TelegramBot.
         accountsTable.update(account);
       }
 
-      return false;
+      continue;
     }
 
     if (result.code === -1 && result.msg.endsWith('.[-54]')) {
       account.activated_promos.push(promoText);
       accountsTable.update(account);
 
-      return true;
+      successCount++;
     }
 
     const returnData = result.code === 0;
     if (!returnData && !account.error_promos.includes(promoText)) {
       account.error_promos.push(promoText);
     } else if (returnData) {
+      successCount++;
       account.activated_promos.push(promoText);
     }
 
     accountsTable.update(account);
-    return returnData;
-  });
-
-  const results = await Promise.all(promises);
+  }
   const totalTime = moment().unix() - startTime;
-
-  const successCount = results.filter(Boolean).length;
 
   const text =
     `Промокод успешно активирован на <b>${successCount}</b> `

@@ -41,7 +41,7 @@ class WebClient {
 
       return result as ActivateCodeResponse;
     } catch (e) {
-      Logger.error(`Error while making request with options ${JSON.stringify(options)}`, LogTagEnum.System);
+      Logger.error(`Error while making request with options ${JSON.stringify(options)}. Error: ${e.data}`, LogTagEnum.System);
 
       return null;
     }
