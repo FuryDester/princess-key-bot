@@ -1,0 +1,9 @@
+/node_modules
+/.idea
+/.git
+/build
+
+/src/create-data.ts
+.env
+*.db
+npm-debug.log

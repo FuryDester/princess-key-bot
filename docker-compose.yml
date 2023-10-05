@@ -1,0 +1,15 @@
+version: "3.7"
+
+services:
+  bot:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: dungeon-bot
+    volumes:
+      - ./:/home/node/app
+    command:
+      - npm
+      - run
+      - start
+    restart: always
