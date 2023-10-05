@@ -31,9 +31,11 @@ class WebClient {
     params.set('cdkey', this.getPromo());
 
     const options = {
-      method  : 'POST',
-      body    : params.toString(),
-      headers : { 'Content-Type': 'application/x-www-form-urlencoded' },
+      method     : 'POST',
+      body       : params.toString(),
+      headers    : { 'Content-Type': 'application/x-www-form-urlencoded' },
+      retry      : 5,
+      retryDelay : 300,
     };
 
     try {
