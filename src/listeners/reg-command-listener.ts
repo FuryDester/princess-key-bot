@@ -1,6 +1,5 @@
 import BaseListener from '@/listeners/base-listener';
 import * as TelegramBot from 'node-telegram-bot-api';
-import { isUserAdmin } from '@/helpers/is-user-admin';
 import Accounts from '@/models/accounts';
 import Logger from '@/wrappers/logger';
 import { LogTagEnum } from '@/enums';
@@ -17,10 +16,6 @@ class RegCommandListener extends BaseListener {
     match: RegExpExecArray,
     _metadata: TelegramBot.Metadata,
   ): Promise<void> {
-    if (!await isUserAdmin(message)) {
-      return;
-    }
-
     const id = Number.parseInt(match[1], 10);
 
     const accountsModel = new Accounts();

@@ -9,11 +9,11 @@ export const config: Config = {
   commands: [
     {
       command     : '/reg',
-      description : '#ID - Регистрация учётной записи (только для администратора)',
+      description : '#ID - Регистрация учётной записи',
     },
     {
       command     : '/del',
-      description : '#ID - Удаление учётной записи (только для администратора)',
+      description : '#ID - Удаление учётной записи',
     },
     {
       command     : '/uc',
