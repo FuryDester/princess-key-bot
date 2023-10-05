@@ -1,7 +1,6 @@
 import BaseException from '@/exceptions/custom-exceptions/base-exception';
 import Logger from '@/wrappers/logger';
 import * as process from 'process';
-import { APIError } from 'vk-io';
 
 const exceptionHandlers = [];
 
@@ -20,9 +19,6 @@ process.on('uncaughtException', (error: Error) => {
         foundHandler = true;
       }
     });
-  } else if (error instanceof APIError) {
-    Logger.error(`VK API error occurred: ${JSON.stringify(error)}`);
-    foundHandler = true;
   }
 
   if (!foundHandler) {

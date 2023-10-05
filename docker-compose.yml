@@ -5,7 +5,7 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile
-    container_name: dungeon-bot
+    container_name: princess-key-bot
     volumes:
       - ./:/home/node/app
     command:
