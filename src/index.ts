@@ -11,6 +11,7 @@ import * as TelegramBot from 'node-telegram-bot-api';
 import Logger from '@/wrappers/logger';
 import * as process from 'process';
 import listeners from '@/listeners/listeners';
+import { config as appConfig } from '@/config';
 
 export let client: TelegramBot;
 
@@ -61,6 +62,9 @@ databaseClient.afterAvailability(async () => {
 
     Logger.info(`Added ${listener.isOnText() ? 'on text' : 'simple'} event with trigger ${listener.getEventTrigger()}`);
   });
+
+  Logger.info('Adding commands');
+  await client.setMyCommands(appConfig.commands, { language_code: 'RU' });
 
   Logger.info('Bot setup completed!');
 });
