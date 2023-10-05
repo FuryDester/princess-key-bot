@@ -49,7 +49,7 @@ class UcCodeCommandListener extends BaseListener {
     await bot.sendMessage(
       message.chat.id,
       `Первая попытка активации была произведена: <b>${moment.unix(promo.created_at).format('DD.MM.YYYY HH:mm:ss')}</b>\n`
-      + `Последняя попытка активации была произведена: <b></b>${moment.unix(promo.updated_at).format('DD.MM.YYYY HH:mm:ss')}</b>`,
+      + `Последняя попытка активации была произведена: <b>${moment.unix(promo.updated_at).format('DD.MM.YYYY HH:mm:ss')}</b>`,
       { parse_mode: 'HTML' },
     );
   }

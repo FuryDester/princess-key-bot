@@ -17,7 +17,6 @@ export enum LogLevelEnum {
 }
 
 export enum LogTagEnum {
-  Command = 'command',
   System = 'system',
   Handler = 'handler',
 }

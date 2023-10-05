@@ -4,6 +4,7 @@ import RegCommandListener from '@/listeners/reg-command-listener';
 import DelCommandListener from '@/listeners/del-command-listener';
 import UcShortCommandListener from '@/listeners/uc-short-command-listener';
 import UcCodeCommandListener from '@/listeners/uc-code-command-listener';
+import CodeCommandListener from '@/listeners/code-command-listener';
 
 export default [
   new HelpCommandListener(),
@@ -11,4 +12,5 @@ export default [
   new DelCommandListener(),
   new UcShortCommandListener(),
   new UcCodeCommandListener(),
+  new CodeCommandListener(),
 ] as BaseListener[];
