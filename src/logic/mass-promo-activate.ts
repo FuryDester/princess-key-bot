@@ -75,19 +75,24 @@ export const massPromoActivate = async (promoText: string, message: TelegramBot.
     }
 
     if (result.code === -1 && result.msg.endsWith('.[-54]')) {
-      account.activated_promos.push(promoText);
-      accountsTable.update(account);
+      if (!account.activated_promos.includes(promoText)) {
+        account.activated_promos.push(promoText);
+        accountsTable.update(account);
+      }
 
       successCount++;
       continue;
     }
 
-    const returnData = result.code === 0;
-    if (!returnData && !account.error_promos.includes(promoText)) {
+    const isSuccess = result.code === 0;
+    if (!isSuccess && !account.error_promos.includes(promoText)) {
       account.error_promos.push(promoText);
-    } else if (returnData) {
+    } else if (isSuccess) {
+      if (!account.activated_promos.includes(promoText)) {
+        account.activated_promos.push(promoText);
+      }
+
       successCount++;
-      account.activated_promos.push(promoText);
     }
 
     accountsTable.update(account);
