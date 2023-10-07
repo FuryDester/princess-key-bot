@@ -79,6 +79,7 @@ export const massPromoActivate = async (promoText: string, message: TelegramBot.
       accountsTable.update(account);
 
       successCount++;
+      continue;
     }
 
     const returnData = result.code === 0;
