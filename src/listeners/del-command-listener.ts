@@ -43,7 +43,15 @@ class RegCommandListener extends BaseListener {
     accountDto.disabled = true;
     accountsTable.update(accountDto);
 
-    await bot.sendMessage(message.chat.id, 'Пользователь удалён!');
+    const totalUsers = accountsTable.count({
+      chat_id: message.chat.id,
+    } as object);
+
+    const activeUsers = accountsTable.count({
+      chat_id  : message.chat.id,
+      disabled : false,
+    } as object);
+    await bot.sendMessage(message.chat.id, `Пользователь удалён! <b>(${activeUsers}/${totalUsers})</b>`, { parse_mode: 'HTML' });
     Logger.info(`User ${id} was removed in chat ${message.chat.id} by user ${message.from.id}`, LogTagEnum.Handler);
   }
 

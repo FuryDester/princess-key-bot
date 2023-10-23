@@ -6,6 +6,7 @@ import UcShortCommandListener from '@/listeners/uc-short-command-listener';
 import UcCodeCommandListener from '@/listeners/uc-code-command-listener';
 import CodeCommandListener from '@/listeners/code-command-listener';
 import RepostCodeTextListener from '@/listeners/repost-code-text-listener';
+import NewChatMemberListener from '@/listeners/new-chat-member-listener';
 
 export default [
   new HelpCommandListener(),
@@ -15,4 +16,5 @@ export default [
   new UcCodeCommandListener(),
   new CodeCommandListener(),
   new RepostCodeTextListener(),
+  new NewChatMemberListener(),
 ] as BaseListener[];
