@@ -54,14 +54,22 @@ class RegCommandListener extends BaseListener {
       if (!accountDto.disabled) {
         Logger.warning(`User ${message.from.id} tried to add existing user ${currentId} in chat ${message.chat.id}`, LogTagEnum.Handler);
 
-        await bot.sendMessage(message.chat.id, `Пользователь <b>${currentId}</b> уже был добавлен! <b>(${activeUsers}/${totalUsers})</b>`, { parse_mode: 'HTML' });
+        await bot.sendMessage(
+          message.chat.id,
+          `Пользователь <b>${currentId}</b> уже был добавлен! <b>(${activeUsers}/${totalUsers})</b>`,
+          { parse_mode: 'HTML' },
+        );
         return;
       }
 
       accountDto.disabled = false;
       accountsTable.update(accountDto);
 
-      await bot.sendMessage(message.chat.id, `Пользователь <b>${currentId}</b> добавлен! <b>(${activeUsers + 1}/${totalUsers})</b>`, { parse_mode: 'HTML' });
+      await bot.sendMessage(
+        message.chat.id,
+        `Пользователь <b>${currentId}</b> добавлен! <b>(${activeUsers + 1}/${totalUsers})</b>`,
+        { parse_mode: 'HTML' },
+      );
       Logger.info(`User ${currentId} was updated (disabled = false) in chat ${message.chat.id} by user ${message.from.id}`, LogTagEnum.Handler);
     }
   }
