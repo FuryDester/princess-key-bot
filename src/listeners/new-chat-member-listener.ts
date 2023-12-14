@@ -21,17 +21,28 @@ class NewChatMemberListener extends BaseListener {
       }
 
       const number = getRandomNumber(1000000000, 1999999999);
-      await bot.sendMessage(
-        message.chat.id,
-        `@${user.username}, приветствую! Для регистрации аккаунта введите команду: <b>/reg #ID (Пример: /reg ${number})</b>`,
-        { parse_mode: 'HTML' },
-      );
+      const userName = user.username
+        ? `@${user.username}`
+        : user.first_name || user.id;
+
+      const messageText =
+        `${userName}, приветствую! Для регистрации аккаунта введите команду: <b>/reg #ID (Пример: /reg ${number})</b>`
+        + '\n\nОбращаем ваше внимание, что вы также можете зарегистрировать сразу несколько аккаунтов, прописав их через запятую, либо иной'
+        + ` разделитель (пробел, точка с запятой, буква и тд)\n\nПример:\n${this.generateExample()}`;
+
+      await bot.sendMessage(message.chat.id, messageText, { parse_mode: 'HTML' });
       Logger.info(`Sent hello message to chat ${message.chat.id} to user ${user.id} (${user.username})`, LogTagEnum.Handler);
     }
   }
 
   isOnText(): boolean {
     return false;
+  }
+
+  // Функция для генерации случайного примера регистрации
+  private generateExample(): string {
+    const identifiers = Array.from({ length: 4 }, () => getRandomNumber(1000000000, 1999999999));
+    return `/reg ${identifiers.join()}\n/reg ${identifiers.join(' ')}\n/reg ${identifiers.join(';')}\n/reg ${identifiers.join('a')}`;
   }
 }
 
