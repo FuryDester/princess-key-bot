@@ -17,6 +17,13 @@ class RegCommandListener extends BaseListener {
     _metadata: TelegramBot.Metadata,
   ): Promise<void> {
     const ids = match[1].split(/\D+/).map(Number);
+    if (!ids.length) {
+      await bot.sendMessage(message.chat.id, 'В команде не указан ни один идентификатор!');
+      Logger.warning(`No correct IDs given! User: ${message.from.id}, chat: ${message.chat.id}`, LogTagEnum.Handler);
+
+      return;
+    }
+
     for (const currentId of ids) {
       const accountsModel = new Accounts();
       const accountsTable = accountsModel.getTable();
