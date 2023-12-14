@@ -47,7 +47,7 @@ class RegCommandListener extends BaseListener {
         await bot.sendMessage(message.chat.id, `Пользователь добавлен! <b>(${activeUsers + 1}/${totalUsers + 1})</b>`, { parse_mode: 'HTML' });
         Logger.info(`User ${currentId} was added in chat ${message.chat.id} by user ${message.from.id}`, LogTagEnum.Handler);
 
-        return;
+        continue;
       }
 
       const accountDto = accountsModel.formDto(result) as AccountDto;
@@ -59,7 +59,7 @@ class RegCommandListener extends BaseListener {
           `Пользователь <b>${currentId}</b> уже был добавлен! <b>(${activeUsers}/${totalUsers})</b>`,
           { parse_mode: 'HTML' },
         );
-        return;
+        continue;
       }
 
       accountDto.disabled = false;
