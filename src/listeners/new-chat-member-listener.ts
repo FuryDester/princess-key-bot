@@ -27,8 +27,8 @@ class NewChatMemberListener extends BaseListener {
 
       const messageText =
         `${userName}, приветствую! Для регистрации аккаунта введите команду: <b>/reg #ID (Пример: /reg ${number})</b>`
-        + '\n\nОбращаем ваше внимание, что вы также можете зарегистрировать сразу несколько аккаунтов, прописав их через запятую, либо иной'
-        + ` разделитель (пробел, точка с запятой, буква и тд)\n\nПример:\n${this.generateExample()}`;
+        + '\n\n<b>Обращаем ваше внимание, что вы также можете зарегистрировать сразу несколько аккаунтов, прописав их через запятую, либо иной'
+        + ` разделитель (пробел, точка с запятой, буква и тд)</b>\n\nПример:\n${this.generateExample()}`;
 
       await bot.sendMessage(message.chat.id, messageText, { parse_mode: 'HTML' });
       Logger.info(`Sent hello message to chat ${message.chat.id} to user ${user.id} (${user.username})`, LogTagEnum.Handler);
