@@ -41,7 +41,7 @@ class NewChatMemberListener extends BaseListener {
 
   // Функция для генерации случайного примера регистрации
   private generateExample(): string {
-    const identifiers = Array.from({ length: 4 }, () => getRandomNumber(1000000000, 1999999999));
+    const identifiers = Array.from({ length: 4 }, () => getRandomNumber(100, 199));
     return `/reg ${identifiers.join()}\n/reg ${identifiers.join(' ')}\n/reg ${identifiers.join(';')}\n/reg ${identifiers.join('a')}`;
   }
 }
