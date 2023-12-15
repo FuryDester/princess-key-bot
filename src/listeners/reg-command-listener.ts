@@ -51,7 +51,11 @@ class RegCommandListener extends BaseListener {
 
         accountsTable.insertOne(accountDto);
 
-        await bot.sendMessage(message.chat.id, `Пользователь добавлен! <b>(${activeUsers + 1}/${totalUsers + 1})</b>`, { parse_mode: 'HTML' });
+        await bot.sendMessage(
+          message.chat.id,
+          `Пользователь <b>${currentId}</b> добавлен! <b>(${activeUsers + 1}/${totalUsers + 1})</b>`,
+          { parse_mode: 'HTML' },
+        );
         Logger.info(`User ${currentId} was added in chat ${message.chat.id} by user ${message.from.id}`, LogTagEnum.Handler);
 
         continue;
