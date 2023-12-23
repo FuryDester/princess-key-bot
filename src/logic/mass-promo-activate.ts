@@ -103,7 +103,7 @@ export const massPromoActivate = async (promoText: string, message: TelegramBot.
   const text =
     `Промокод <b>${promoText}</b> успешно активирован на <b>${successCount}</b> `
     + `аккаунт${successCount === 1 ? 'е' : 'ах'} из <b>${accounts.length}</b>`
-    + ` <b>(${successCount}/${accounts.length}, ${secondsToHms(totalTime)}})</b>`;
+    + ` <b>(${successCount}/${accounts.length}, ${secondsToHms(totalTime)})</b>`;
 
   await bot.sendMessage(message.chat.id, text, { parse_mode: 'HTML' });
   Logger.info(
