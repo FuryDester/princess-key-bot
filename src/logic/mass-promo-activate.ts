@@ -7,6 +7,7 @@ import Logger from '@/wrappers/logger';
 import { LogTagEnum } from '@/enums';
 import AccountDto from '@/data-transfer-objects/models/account-dto';
 import WebClient from '@/wrappers/web-client';
+import { secondsToHms } from '@/helpers/seconds-to-hms';
 
 export const massPromoActivate = async (promoText: string, message: TelegramBot.Message, bot: TelegramBot): Promise<void> => {
   const promosModel = new Promos();
@@ -100,9 +101,9 @@ export const massPromoActivate = async (promoText: string, message: TelegramBot.
   const totalTime = moment().unix() - startTime;
 
   const text =
-    `Промокод успешно активирован на <b>${successCount}</b> `
+    `Промокод <b>${promoText}</b> успешно активирован на <b>${successCount}</b> `
     + `аккаунт${successCount === 1 ? 'е' : 'ах'} из <b>${accounts.length}</b>`
-    + ` <b>(${successCount}/${accounts.length}, ${totalTime} сек.)</b>`;
+    + ` <b>(${successCount}/${accounts.length}, ${secondsToHms(totalTime)})</b>`;
 
   await bot.sendMessage(message.chat.id, text, { parse_mode: 'HTML' });
   Logger.info(

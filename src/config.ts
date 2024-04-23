@@ -13,7 +13,7 @@ export const config: Config = {
     },
     {
       command     : '/del',
-      description : '#ID - Удаление учётной записи (только для администратора)',
+      description : '#ID - Удаление учётной записи',
     },
     {
       command     : '/uc',
