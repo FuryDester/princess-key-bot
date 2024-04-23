@@ -24,9 +24,13 @@ class RegCommandListener extends BaseListener {
       return;
     }
 
+    const accountsModel = new Accounts();
+    const accountsTable = accountsModel.getTable();
     for (const currentId of ids) {
-      const accountsModel = new Accounts();
-      const accountsTable = accountsModel.getTable();
+      if (currentId <= 0 || Number.isNaN(currentId)) {
+        continue;
+      }
+
       const result = accountsTable.findOne({
         chat_id : message.chat.id,
         id      : currentId,
